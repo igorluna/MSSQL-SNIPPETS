@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>  
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">  
+<_locDefinition xmlns="urn:locstudio">  
+    <_locDefault _loc="locNone" />  
+    <_locTag _loc="locData">Title</_locTag>  
+    <_locTag _loc="locData">Description</_locTag>  
+    <_locTag _loc="locData">Author</_locTag>  
+    <_locTag _loc="locData">ToolTip</_locTag>  
+   <_locTag _loc="locData">Default</_locTag>  
+</_locDefinition>  
+<CodeSnippet Format="1.0.0">  
+<Header>  
+<Title>Drop e Grant</Title>  
+                        <Shortcut></Shortcut>  
+<Description>Adiciona o Drop e Grant no codigo selecionado.</Description>  
+<Author>Igor Luna</Author>  
+<SnippetTypes>  
+	<SnippetType>SurroundsWith</SnippetType>  
+</SnippetTypes>  
+</Header>  
+<Snippet>  
+<Declarations>  
+	<Literal>  
+		<ID>SPR_SuaProc</ID>  
+		<ToolTip>Nome da sua procedure</ToolTip>  
+		<Default>SPR_SuaProc</Default>  
+	</Literal>  
+</Declarations>  
+<Code Language="SQL"><![CDATA[ 
+
+IF EXISTS (SELECT TOP 1 1 FROM DBO.SYSOBJECTS WHERE ID = OBJECT_ID(N'[dbo].[$SPR_SuaProc$]') AND OBJECTPROPERTY(id, N'IsProcedure') = 1)
+BEGIN
+  DROP PROCEDURE [dbo].[$SPR_SuaProc$]
+END
+GO
+
+$selected$
+
+GO
+
+GRANT EXECUTE ON [dbo].[$SPR_SuaProc$] TO [PadraoSQL]
+GO
+]]>  
+</Code>  
+</Snippet>  
+</CodeSnippet>  
+</CodeSnippets>  
